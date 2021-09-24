@@ -31,11 +31,11 @@ ChiMax = Settings.ChiMax;
 % Load image and ensure correct format
 if size(C,3)~=1
 
-    %try
-     %   C = rgb2gray(C);
-    %catch
-     %   C = C(:,:,1);
-    %end
+    try
+        C = rgb2gray(C);
+    catch
+        C = C(:,:,1);
+    end
     
 end
 

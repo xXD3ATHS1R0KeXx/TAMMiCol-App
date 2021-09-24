@@ -35,6 +35,7 @@ ImageSuffix = Controls.ImageSuffix;
 DirectorySeparator = Controls.DirectorySeparator;
 DirectorySuffix = Controls.DirectorySuffix;
 ShowProgress = Controls.ShowProgress;
+File = Controls.File;
 
 % Ensure path out is set
 if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
@@ -108,7 +109,7 @@ if ComputeImage
         LocationOut = fullfile(PathOut,HolderOut,DirectoryOut);
         
         % Load image
-        C = flip(imread(fullfile(files(n).folder,files(n).name)));
+        C = flip(imread(fullfile(PathIn)));%fullfile(files(n).folder,files(n).name)));
         
         % Check for alpha channel
         if size(C,3)>3
@@ -148,7 +149,7 @@ if ComputeImage
         % Save binary image
         if SaveBinary
             
-            imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]))
+            Controls.file = imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
             
         end
         
@@ -230,6 +231,7 @@ if ComputeImage
         warningsTable = cell2table(warnings);
         warningsTable.Properties.VariableNames = {'Dataset','Sample','Time','Warning'};
         writetable(warningsTable,fullfile(PathOut,[saveName ImageSeparator 'Warnings']))
+        
 
     end
 

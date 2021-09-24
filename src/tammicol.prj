@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.webdeploy" plugin-version="1.0">
-  <configuration file="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\tammicol.prj" location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code" name="tammicol" preferred-package-location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\tammicol" target="target.webdeploy" target-name="Web App Compiler">
+  <configuration file="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol.prj" location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src" name="tammicol" preferred-package-location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol" target="target.webdeploy" target-name="Web App Compiler">
     <param.appname>tammicol</param.appname>
     <param.intermediate>${PROJECT_ROOT}\tammicol</param.intermediate>
     <param.files.only>${PROJECT_ROOT}\tammicol</param.files.only>
@@ -31,7 +31,7 @@
     </fileset.depfun>
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\tammicol" name="tammicol.ctf" optional="false">C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\tammicol\tammicol.ctf</file>
+      <file location="${PROJECT_ROOT}\tammicol" name="tammicol.ctf" optional="false">C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol\tammicol.ctf</file>
     </build-deliverables>
     <workflow />
     <matlab>
