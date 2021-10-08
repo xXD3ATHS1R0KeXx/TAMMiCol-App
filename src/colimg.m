@@ -1,6 +1,6 @@
 function [CF,warnings,tolerances,proportions,error,selectedTolerance,criticalLevel,criticalIndex] = colimg(C,Settings)
 
-%COLIMG Process and analyse colony images
+%COLget_fu Process and analyse colony images
 %
 %   COLIMG is a function that produces a binary version of the input image
 %   C. COLIMG returns a binary image CF, along with any warnings. The

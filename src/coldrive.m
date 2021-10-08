@@ -106,11 +106,14 @@ if ComputeImage
         end
         
         % Set output location
-        LocationOut = fullfile(PathOut,HolderOut,DirectoryOut);
+        % LocationOut = fullfile(PathOut,HolderOut,DirectoryOut);
         
         % Load image
-        C = flip(imread(fullfile(PathIn)));%fullfile(files(n).folder,files(n).name)));
-        
+        % C = flip(imread(fullfile(PathIn)));%fullfile(files(n).folder,files(n).name)));
+        addpath(PathIn)
+        A = imread(fullfile(PathIn))
+        fullfile(files(n).folder,files(n).name)
+        C = flip(A);
         % Check for alpha channel
         if size(C,3)>3
             C = C(:,:,1:3);
