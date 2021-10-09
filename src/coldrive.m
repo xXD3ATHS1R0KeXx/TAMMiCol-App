@@ -152,8 +152,10 @@ if ComputeImage
         
         % Save binary image
         if SaveBinary
-            
-            Controls.file = imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
+
+            Controls.file = flip(1-CF);
+            imwrite(Controls.file, fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
+            %Controls.file = imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
             
         end
         
