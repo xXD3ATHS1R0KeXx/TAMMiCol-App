@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2021a">
-  <configuration file="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\coldrive.prj" location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code" name="coldrive" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration file="D:\Github Repo\TAMMiCol-App\src\coldrive.prj" location="D:\Github Repo\TAMMiCol-App\src" name="coldrive" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex />
@@ -8,11 +8,16 @@
       <param.BuildFolder>option.BuildFolder.Project</param.BuildFolder>
       <param.SpecifiedBuildFolder />
       <param.SearchPaths />
+      <var.SimdQueryHardwareVendor>Generic</var.SimdQueryHardwareVendor>
+      <var.SimdQueryHardwareType>MATLAB Host Computer</var.SimdQueryHardwareType>
+      <param.InstructionSetExtensionsAvailableInUI />
+      <param.InstructionSetExtensions>None</param.InstructionSetExtensions>
       <param.ResponsivenessChecks />
       <param.ExtrinsicCalls />
       <param.IntegrityChecks />
       <param.SaturateOnIntegerOverflow />
       <param.EnableAutoParallelization />
+      <param.NumberOfCpuThreads />
       <param.GlobalDataSyncMethod />
       <param.EnableVariableSizing />
       <param.DynamicMemoryAllocation />
@@ -33,6 +38,7 @@
       <param.Verbosity />
       <param.ReportPotentialDifferences />
       <param.GenerateReport />
+      <param.HighlightImplicitExpansionIssues />
       <param.LaunchReport />
       <param.ReportInfoVarName />
       <param.DefaultTestFile />
@@ -68,6 +74,7 @@
       <param.ConstantInputs />
       <param.EnableCRICodeCoverage />
       <param.EnableAutoParallelizationReporting />
+      <param.CacheDynamicArrayDataPointer />
       <param.EnableJIT />
       <param.EnableJITSilentBailOut />
       <param.CheckForIssuesJIT />
@@ -82,11 +89,16 @@
         <param.BuildFolder />
         <param.SpecifiedBuildFolder />
         <param.SearchPaths />
+        <var.SimdQueryHardwareVendor />
+        <var.SimdQueryHardwareType />
+        <param.InstructionSetExtensionsAvailableInUI />
+        <param.InstructionSetExtensions />
         <param.ResponsivenessChecks />
         <param.ExtrinsicCalls />
         <param.IntegrityChecks />
         <param.SaturateOnIntegerOverflow />
         <param.EnableAutoParallelization />
+        <param.NumberOfCpuThreads />
         <param.GlobalDataSyncMethod />
         <param.EnableVariableSizing />
         <param.DynamicMemoryAllocation />
@@ -107,6 +119,7 @@
         <param.Verbosity />
         <param.ReportPotentialDifferences />
         <param.GenerateReport />
+        <param.HighlightImplicitExpansionIssues />
         <param.LaunchReport />
         <param.ReportInfoVarName />
         <param.DefaultTestFile />
@@ -142,6 +155,7 @@
         <param.ConstantInputs />
         <param.EnableCRICodeCoverage />
         <param.EnableAutoParallelizationReporting />
+        <param.CacheDynamicArrayDataPointer />
         <param.EnableJIT />
         <param.EnableJITSilentBailOut />
         <param.CheckForIssuesJIT />
@@ -156,11 +170,16 @@
       <param.BuildFolder>option.BuildFolder.Project</param.BuildFolder>
       <param.SpecifiedBuildFolder />
       <param.SearchPaths />
+      <var.SimdQueryHardwareVendor>Generic</var.SimdQueryHardwareVendor>
+      <var.SimdQueryHardwareType>MATLAB Host Computer</var.SimdQueryHardwareType>
+      <param.InstructionSetExtensionsAvailableInUI />
+      <param.InstructionSetExtensions>None</param.InstructionSetExtensions>
       <param.SaturateOnIntegerOverflow />
       <param.PurelyIntegerCode />
       <param.SupportNonFinite />
       <param.LoopUnrollThreshold />
       <param.EnableAutoParallelization />
+      <param.NumberOfCpuThreads />
       <param.EnableVariableSizing />
       <param.DynamicMemoryAllocation />
       <param.DynamicMemoryAllocationThreshold />
@@ -222,6 +241,7 @@
       <param.GenerateCodeMetricsReport />
       <param.GenerateCodeReplacementReport />
       <param.HighlightPotentialDataTypeIssues />
+      <param.HighlightImplicitExpansionIssues />
       <param.LaunchReport />
       <param.ReportInfoVarName />
       <param.SILDebugging />
@@ -243,11 +263,11 @@
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
       <param.TargetLangStandard>Auto</param.TargetLangStandard>
-      <param.CodeReplacementLibrary>None</param.CodeReplacementLibrary>
+      <param.CodeReplacementLibrary />
       <param.DeprecatedCRLFlag />
       <param.SameHardware>true</param.SameHardware>
       <param.Toolchain>Automatically locate an installed toolchain</param.Toolchain>
-      <param.BuildConfiguration>Faster Runs</param.BuildConfiguration>
+      <param.BuildConfiguration />
       <param.CustomToolchainOptions />
       <var.ToolchainSettingsVisible />
       <param.target.Data>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;ctdata&gt;&lt;configuredHardware/&gt;&lt;/ctdata&gt;</param.target.Data>
@@ -329,8 +349,10 @@
       <param.CustomFFTCallback />
       <param.CustomBLASCallback />
       <param.EnableAutoParallelizationReporting />
+      <param.CacheDynamicArrayDataPointer />
       <param.GenerateDefaultInSwitch />
       <param.EnableTraceability />
+      <param.SILPILVerbosity />
       <param.UseECoderFeatures>false</param.UseECoderFeatures>
       <param.EnableGitSupport />
       <param.EnableAutoCommit />
@@ -349,11 +371,16 @@
         <param.BuildFolder />
         <param.SpecifiedBuildFolder />
         <param.SearchPaths />
+        <var.SimdQueryHardwareVendor />
+        <var.SimdQueryHardwareType />
+        <param.InstructionSetExtensionsAvailableInUI />
+        <param.InstructionSetExtensions />
         <param.SaturateOnIntegerOverflow />
         <param.PurelyIntegerCode />
         <param.SupportNonFinite />
         <param.LoopUnrollThreshold />
         <param.EnableAutoParallelization />
+        <param.NumberOfCpuThreads />
         <param.EnableVariableSizing />
         <param.DynamicMemoryAllocation />
         <param.DynamicMemoryAllocationThreshold />
@@ -415,6 +442,7 @@
         <param.GenerateCodeMetricsReport />
         <param.GenerateCodeReplacementReport />
         <param.HighlightPotentialDataTypeIssues />
+        <param.HighlightImplicitExpansionIssues />
         <param.LaunchReport />
         <param.ReportInfoVarName />
         <param.SILDebugging />
@@ -506,8 +534,10 @@
         <param.CustomFFTCallback />
         <param.CustomBLASCallback />
         <param.EnableAutoParallelizationReporting />
+        <param.CacheDynamicArrayDataPointer />
         <param.GenerateDefaultInSwitch />
         <param.EnableTraceability />
+        <param.SILPILVerbosity />
         <param.UseECoderFeatures />
         <param.EnableGitSupport />
         <param.EnableAutoCommit />
@@ -555,12 +585,18 @@
       <param.BuildFolder>option.BuildFolder.Project</param.BuildFolder>
       <param.SpecifiedBuildFolder />
       <param.SearchPaths />
+      <var.SimdQueryHardwareVendor>Generic</var.SimdQueryHardwareVendor>
+      <var.SimdQueryHardwareType>MATLAB Host Computer</var.SimdQueryHardwareType>
+      <param.InstructionSetExtensionsAvailableInUI />
+      <param.InstructionSetExtensions>None</param.InstructionSetExtensions>
+      <param.NumberOfCpuThreads />
       <param.hdl.MapPersistentVarsToRAM />
       <param.hdl.RAMThreshold />
       <param.hdl.MapPipelineDelaysToRAM />
       <param.hdl.RAMVariableNames />
       <param.hdl.RegisterInputs />
       <param.hdl.RegisterOutputs />
+      <param.hdl.AdaptivePipelining />
       <param.hdl.DistributedPipelining />
       <param.hdl.DistributedPipeliningPriority />
       <param.hdl.PreserveDesignDelays />
@@ -727,12 +763,18 @@
         <param.BuildFolder />
         <param.SpecifiedBuildFolder />
         <param.SearchPaths />
+        <var.SimdQueryHardwareVendor />
+        <var.SimdQueryHardwareType />
+        <param.InstructionSetExtensionsAvailableInUI />
+        <param.InstructionSetExtensions />
+        <param.NumberOfCpuThreads />
         <param.hdl.MapPersistentVarsToRAM />
         <param.hdl.RAMThreshold />
         <param.hdl.MapPipelineDelaysToRAM />
         <param.hdl.RAMVariableNames />
         <param.hdl.RegisterInputs />
         <param.hdl.RegisterOutputs />
+        <param.hdl.AdaptivePipelining />
         <param.hdl.DistributedPipelining />
         <param.hdl.DistributedPipeliningPriority />
         <param.hdl.PreserveDesignDelays />
@@ -902,7 +944,7 @@
     <var.cfi.preBuildChecksum />
     <var.outdatedOnRestore />
     <var.lastUserSourceChecksum />
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\coldrive.m&lt;/file&gt;&lt;file&gt;C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\colimg.m&lt;/file&gt;&lt;file&gt;C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\colmeta.m&lt;/file&gt;&lt;file&gt;C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\saveplot.m&lt;/file&gt;&lt;file&gt;C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\statcalc.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;D:\Github Repo\TAMMiCol-App\src\coldrive.m&lt;/file&gt;&lt;file&gt;D:\Github Repo\TAMMiCol-App\src\colimg.m&lt;/file&gt;&lt;file&gt;D:\Github Repo\TAMMiCol-App\src\colmeta.m&lt;/file&gt;&lt;file&gt;D:\Github Repo\TAMMiCol-App\src\saveplot.m&lt;/file&gt;&lt;file&gt;D:\Github Repo\TAMMiCol-App\src\statcalc.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT />
     <param.configImportActive>false</param.configImportActive>
@@ -934,6 +976,7 @@
     <param.gpu.EnableCUBLAS>false</param.gpu.EnableCUBLAS>
     <param.gpu.EnableCUSOLVER>false</param.gpu.EnableCUSOLVER>
     <param.gpu.EnableCUFFT>false</param.gpu.EnableCUFFT>
+    <param.gpu.EnableMemoryManager>false</param.gpu.EnableMemoryManager>
     <var.checkIssuesGpu>false</var.checkIssuesGpu>
     <var.hasGpu>false</var.hasGpu>
     <var.isDeepLearningForMatlabCoderEnabled>true</var.isDeepLearningForMatlabCoderEnabled>
@@ -1061,6 +1104,7 @@
       <param.gpu.EnableCUBLAS />
       <param.gpu.EnableCUSOLVER />
       <param.gpu.EnableCUFFT />
+      <param.gpu.EnableMemoryManager />
       <var.checkIssuesGpu />
       <var.hasGpu />
       <var.isDeepLearningForMatlabCoderEnabled />
@@ -1135,11 +1179,11 @@
       <file>${PROJECT_ROOT}\coldrive.m</file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\codegen\lib\coldrive" name="coldrive.lib" optional="false">C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\Source Code\codegen\lib\coldrive\coldrive.lib</file>
+      <file location="${PROJECT_ROOT}\codegen\lib\coldrive" name="coldrive.lib" optional="false">D:\Github Repo\TAMMiCol-App\src\codegen\lib\coldrive\coldrive.lib</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2021a</root>
+      <root>C:\Program Files\MATLAB\R2021b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
       </toolboxes>

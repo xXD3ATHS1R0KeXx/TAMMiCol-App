@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.webdeploy" plugin-version="1.0">
-  <configuration file="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol.prj" location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src" name="tammicol" preferred-package-location="C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol" target="target.webdeploy" target-name="Web App Compiler">
+  <configuration file="D:\Github Repo\TAMMiCol-App\src\tammicol.prj" location="D:\Github Repo\TAMMiCol-App\src" name="tammicol" preferred-package-location="D:\Github Repo\TAMMiCol-App\src\tammicol" target="target.webdeploy" target-name="Web App Compiler">
     <param.appname>tammicol</param.appname>
     <param.intermediate>${PROJECT_ROOT}\tammicol</param.intermediate>
     <param.files.only>${PROJECT_ROOT}\tammicol</param.files.only>
@@ -21,21 +21,21 @@
     <fileset.web.main>
       <file>${PROJECT_ROOT}\tammicol.mlapp</file>
     </fileset.web.main>
-    <fileset.resources />
-    <fileset.depfun>
+    <fileset.resources>
       <file>${PROJECT_ROOT}\coldrive.m</file>
       <file>${PROJECT_ROOT}\colimg.m</file>
       <file>${PROJECT_ROOT}\colmeta.m</file>
       <file>${PROJECT_ROOT}\saveplot.m</file>
       <file>${PROJECT_ROOT}\statcalc.m</file>
-    </fileset.depfun>
+    </fileset.resources>
+    <fileset.depfun />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\tammicol" name="tammicol.ctf" optional="false">C:\Users\serwi\Documents\MATLAB\TAMMiCol-master\src\tammicol\tammicol.ctf</file>
+      <file location="${PROJECT_ROOT}\tammicol" name="tammicol.ctf" optional="false">D:\Github Repo\TAMMiCol-App\src\tammicol\tammicol.ctf</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2021a</root>
+      <root>C:\Program Files\MATLAB\R2021b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
       </toolboxes>
