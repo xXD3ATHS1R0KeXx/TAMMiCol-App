@@ -82,12 +82,12 @@ if ComputeImage
         [name,sample,time,magnification] = colmeta(filename);
         names{n} = name;
         if isnan(magnification)
-            filename = [name ' s' num2str(sample) ' ' num2str(time) 'h'];
+            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h'];
         else
-            filename = [name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
+            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
         end
-        DirectoryOut = ['Sample ' num2str(sample)];
-        HolderOut = [name DirectorySeparator DirectorySuffix];
+        DirectoryOut = ['Sample'];
+        HolderOut = ['temp' DirectorySeparator DirectorySuffix];
         Holders{n} = HolderOut;
         
         % Create output folders
