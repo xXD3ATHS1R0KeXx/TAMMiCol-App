@@ -1,0 +1,53 @@
+<html>  
+<head>
+    <style>     
+        html{     
+        background-color: white;     
+        padding: 5px;     
+        width: 95%;     
+        }     
+        pre {     
+        overflow-x: auto;     
+        white-space: pre-wrap;     
+        white-space: -moz-pre-wrap;     
+        white-space: -pre-wrap;     
+        white-space: -o-pre-wrap;     
+        word-wrap: break-word;     
+        }     
+    </style>     
+    
+    <script type="text/javascript">     
+            
+            function setup(htmlComponent) {     
+            
+				htmlComponent.addEventListener("DataChanged", function(event) {     
+				scrollID =  htmlComponent.Data;     
+					if (scrollID != ''){
+						if(scrollID==="bottom"){         
+							scrollToBottom();     
+						} else if(scrollID==="DOWNLOAD_MCRINSTALLER" || scrollID==="BUILD_MISSING" || scrollID==="SAMPLE_GEN" || scrollID==="USER_REQUESTED_PACKAGE"){     
+							document.getElementById(scrollID).scrollIntoView(true);     
+						} else {     
+							//document.body.innerHTML = document.body.innerHTML + scrollID;     
+							document.body.appendChild(scrollID);                 
+							scrollToBottom();     
+						}    
+						htmlComponent.Data = '';
+					}		
+				});          
+            }     
+            function scrollToBottom(){     
+            var scrollingElement = (document.scrollingElement || document.body);     
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;     
+            }     
+            
+    </script> 
+</head>
+ <body><meta charset="UTF-8">        
+ <pre><font color=blue>mcc -W 'webapp:appUI,CONFIG:C:\Users\Sam\AppData\Local\Temp\tp856c7fde_8e1f_4c13_b261_1591283f68db.xml' -d 'C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\appUI' -v -a 'C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\default.xml' -a 'C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\imgSettings.m' -a 'C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\projSettings.m' -Z autodetect -C 'C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\appUI.mlapp'</font>
+Compiler version: 8.3 (R2021b)
+Analyzing file dependencies. 
+Parsing file "C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\appUI.mlapp" 
+	(referenced from command line). 
+
+</pre></body></html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct>
+	<general>
+		<SetName>Data</SetName>
+	</general>
+	<imgProcessing>
+		<Method>Connected</Method>
+		<BorderMethod>Reduce</BorderMethod>
+		<InvertColour>0</InvertColour>
+	</imgProcessing>
+	<stats>
+	    <RadialBins>200</RadialBins>
+		<AngularBins>200</AngularBins>
+		<PairBins>200</PairBins>
+		<MaxCells>1000</MaxCells>
+		<PairSamples>1000</PairSamples>
+		<RadiusMethod>CSR</RadiusMethod>
+		<RadiusProportion>0</RadiusProportion>		
+		<CentreData>1</CentreData>
+		<Annulus>1</Annulus>
+	</stats>
+	<exportFiles>
+		<SaveBinary>1</SaveBinary>
+		<SaveBinaryCSV>0</SaveBinaryCSV>
+		<SaveBinaryMAT>0</SaveBinaryMAT>
+		<SaveComparison>0</SaveComparison>
+		<SaveStatsCSV>1</SaveStatsCSV>
+		<SaveStatsMAT>0</SaveStatsMAT>
+	</exportFiles>
+	<exportOpt>
+		<SaveIntensity>0</SaveIntensity>
+		<SaveError>0</SaveError>
+		<SaveFourier>0</SaveFourier>
+		<SaveWave>0</SaveWave>
+		<SaveFR>0</SaveFR>
+		<SaveFA>0</SaveFA>
+		<SaveFP>0</SaveFP>
+		<ImageExtensionOut>tif</ImageExtensionOut>
+	</exportOpt>
+</struct>
