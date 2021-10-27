@@ -19,49 +19,33 @@ SampleImageOptionsPanel.FontWeight = 'bold';
 SampleImageOptionsPanel.FontSize = 18;
 SampleImageOptionsPanel.Position = [8 10 416 458];
 
-% Create NameEditFieldLabel
-NameEditFieldLabel = uilabel(SampleImageOptionsPanel);
-NameEditFieldLabel.HorizontalAlignment = 'right';
-NameEditFieldLabel.FontSize = 18;
-NameEditFieldLabel.Position = [46 386 53 22];
-NameEditFieldLabel.Text = 'Name';
-
-% Create NameEditField
-NameEditField = uieditfield(SampleImageOptionsPanel, 'text');
-NameEditField.FontSize = 18;
-NameEditField.Position = [114 382 256 26];
-% Set initial value to current Image Name
-NameEditField.Value = char(getImage(app, imgIndex).imgName);
-% When field is changed, save new Image Name
-NameEditField.ValueChangedFcn = @(src,event)changeImage(app,imgIndex,'imgName',string(event.Value));
-
 % Create SampleEditFieldLabel
 SampleEditFieldLabel = uilabel(SampleImageOptionsPanel);
 SampleEditFieldLabel.HorizontalAlignment = 'right';
 SampleEditFieldLabel.FontSize = 18;
-SampleEditFieldLabel.Position = [117 329 66 22];
+SampleEditFieldLabel.Position = [142 382 66 22];
 SampleEditFieldLabel.Text = 'Sample';
 
 % Create SampleEditField
 SampleEditField = uieditfield(SampleImageOptionsPanel, 'numeric');
 SampleEditField.HorizontalAlignment = 'left';
 SampleEditField.FontSize = 18;
-SampleEditField.Position = [198 328 100 23];
-SampleEditField.Value = getImage(app, imgIndex).sample;
-SampleEditField.ValueChangedFcn = @(src,event)changeImage(app,imgIndex,'sample',event.Value);
+SampleEditField.Position = [223 381 52 23];
+SampleEditField.Value = imgIndex;
+SampleEditField.Editable = 'off';
 
 % Create MagnificationxEditFieldLabel
 MagnificationxEditFieldLabel = uilabel(SampleImageOptionsPanel);
 MagnificationxEditFieldLabel.HorizontalAlignment = 'right';
 MagnificationxEditFieldLabel.FontSize = 18;
-MagnificationxEditFieldLabel.Position = [83 118 125 22];
-MagnificationxEditFieldLabel.Text = 'Magnification x';
+MagnificationxEditFieldLabel.Position = [94 309 116 22];
+MagnificationxEditFieldLabel.Text = 'Magnification';
 
 % Create MagnificationxEditField
 MagnificationxEditField = uieditfield(SampleImageOptionsPanel, 'numeric');
 MagnificationxEditField.HorizontalAlignment = 'left';
 MagnificationxEditField.FontSize = 18;
-MagnificationxEditField.Position = [207 117 116 23];
+MagnificationxEditField.Position = [223 309 100 23];
 MagnificationxEditField.Value = getImage(app, imgIndex).zoom;
 MagnificationxEditField.ValueChangedFcn = @(src,event)changeImage(app,imgIndex,'zoom',event.Value);
 
@@ -70,7 +54,7 @@ TimeButtonGroup = uibuttongroup(SampleImageOptionsPanel);
 TimeButtonGroup.AutoResizeChildren = 'off';
 TimeButtonGroup.Title = 'Time';
 TimeButtonGroup.FontSize = 18;
-TimeButtonGroup.Position = [80 176 256 106];
+TimeButtonGroup.Position = [82 156 256 106];
 
 % Create HoursButton
 HoursButton = uiradiobutton(TimeButtonGroup);
@@ -130,6 +114,20 @@ SaveButton.FontSize = 18;
 SaveButton.Position = [558 509 100 29];
 SaveButton.Text = 'Save';
 SaveButton.ButtonPushedFcn = @(src,event)refreshTree(app);
+
+% Create UpButton
+UpButton = uibutton(myPanel, 'push');
+UpButton.FontSize = 20;
+UpButton.Position = [10 509 37 32];
+UpButton.Text = '▲';
+UpButton.ButtonPushedFcn = @(src,event)moveImgUp(app,imgIndex);
+
+% Create DownButton
+DownButton = uibutton(myPanel, 'push');
+DownButton.FontSize = 20;
+DownButton.Position = [53 509 37 32];
+DownButton.Text = '▼';
+DownButton.ButtonPushedFcn = @(src,event)moveImgDown(app,imgIndex);
 
 end
 
