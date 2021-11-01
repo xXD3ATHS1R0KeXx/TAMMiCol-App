@@ -1,4 +1,4 @@
-function coldrive(Config,Img,ImgNo)
+function coldrive(Config)
 
 %COLDRIVE Driver script for image processing and statistics
 %
@@ -15,51 +15,48 @@ function coldrive(Config,Img,ImgNo)
 ComputeImage = 1;
 ComputeStatistics = 0;
 
-SaveBinary = Config.exportFiles.SaveBinary;
-SaveBinaryCSV = Config.exportFiles.SaveBinaryCSV;
-SaveBinaryMAT = Config.exportFiles.SaveBinaryMAT;
-SaveComparison = Config.exportFiles.SaveComparison;
-SaveStatsCSV = Config.exportFiles.SaveStatsCSV;
-SaveStatsMAT = Config.exportFiles.SaveStatsMAT;
+SaveBinary = Controls.SaveBinary;
+SaveBinaryCSV = Controls.SaveBinaryCSV;
+SaveBinaryMAT = Controls.SaveBinaryMAT;
+SaveComparison = Controls.SaveComparison;
+SaveStatsCSV = Controls.SaveStatsCSV;
+SaveStatsMAT = Controls.SaveStatsMAT;
 
-SaveIntensity = Config.exportOpt.SaveIntensity;
-SaveError = Config.exportOpt.SaveError;
-SaveFourier = Config.exportOpt.SaveFourier;
-SaveWave = Config.exportOpt.SaveWave;
-SaveFR = Config.exportOpt.SaveFR;
-SaveFA = Config.exportOpt.SaveFA;
-SaveFP = Config.exportOpt.SaveFP;
+SaveFourier = Controls.SaveFourier;
+SaveWave = Controls.SaveWave;
+SaveFR = Controls.SaveFR;
+SaveFA = Controls.SaveFA;
+SaveFP = Controls.SaveFP;
 
-ImgZoom = img.zoom;
-ImgTime = img.time;
-ImgTimeHrs = img.timeHrs;
-ImgTimeDays = img.timeDays
-ImgPath = img.filePath;
-ImgFile = img.fileName;
 
-% ImageExtensionIn = Controls.ImageExtensionIn;
-% ImageExtensionOut = Controls.ImageExtensionOut;
-% PathIn = Controls.PathIn;
-% ImageSeparator = Controls.ImageSeparator;
-% ImageSuffix = Controls.ImageSuffix;
-% DirectorySeparator = Controls.DirectorySeparator;
-% DirectorySuffix = Controls.DirectorySuffix;
-% ShowProgress = Controls.ShowProgress;
-% File = Controls.File;
+
+
+SaveIntensity = Controls.SaveIntensity;
+SaveError = Controls.SaveError;
+
+ImageExtensionIn = Controls.ImageExtensionIn;
+ImageExtensionOut = Controls.ImageExtensionOut;
+PathIn = Controls.PathIn;
+ImageSeparator = Controls.ImageSeparator;
+ImageSuffix = Controls.ImageSuffix;
+DirectorySeparator = Controls.DirectorySeparator;
+DirectorySuffix = Controls.DirectorySuffix;
+ShowProgress = Controls.ShowProgress;
+File = Controls.File;
 
 % Ensure path out is set
-% if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
+if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
     PathOut = PathIn;
-% else
-%     PathOut = Controls.PathOut;
-% end
+else
+    PathOut = Controls.PathOut;
+end
 
 % Ensure directory suffix is set
-% if ~isfield(Controls,'DirectorySuffix')
+if ~isfield(Controls,'DirectorySuffix')
     Controls.DirectorySuffix = 'Binary';
-% else
-%     DirectorySuffix = Controls.DirectorySuffix;
-% end
+else
+    DirectorySuffix = Controls.DirectorySuffix;
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%% Image processing %%%
@@ -88,10 +85,14 @@ if ComputeImage
     for n=1:nFiles
         
         % Get metadata and create formatted filename
-        [sample,time,magnification] = colmeta(ImgFile,Img,ImgNo);
-        name = Config.general.SetName;
+        [~,filename,~] = fileparts(files(n).name);
+        [name,sample,time,magnification] = colmeta(filename);
         names{n} = name;
-        filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
+        if isnan(magnification)
+            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h'];
+        else
+            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
+        end
         DirectoryOut = ['Sample'];
         HolderOut = ['temp' DirectorySeparator DirectorySuffix];
         Holders{n} = HolderOut;
@@ -498,9 +499,9 @@ if ComputeStatistics
 end
 
 % Save settings
-% S = [fieldnames(Settings) struct2cell(Settings)];
-% O = [fieldnames(Options) struct2cell(Options)];
-% C = [fieldnames(Controls) struct2cell(Controls)];
-% settingsTable = cell2table([S;O;C]);
-% settingsTable.Properties.VariableNames = {'Option','Value'};
-% writetable(settingsTable,fullfile(PathOut,[saveName ImageSeparator 'Settings']));
+S = [fieldnames(Settings) struct2cell(Settings)];
+O = [fieldnames(Options) struct2cell(Options)];
+C = [fieldnames(Controls) struct2cell(Controls)];
+settingsTable = cell2table([S;O;C]);
+settingsTable.Properties.VariableNames = {'Option','Value'};
+writetable(settingsTable,fullfile(PathOut,[saveName ImageSeparator 'Settings']));
