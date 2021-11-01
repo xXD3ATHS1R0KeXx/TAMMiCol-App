@@ -1,4 +1,4 @@
-function [name,sample,time,magnification] = colmeta(Img,ImgNo)
+function [sample,time,magnification,extn] = colmeta(Img,ImgNo)
 %COLMETA Get metadata from image
 %
 %   COLMETA extracts information from a given filename with a suffix.
@@ -19,8 +19,7 @@ elseif (Img.time == "Hours")
     time = Img.timeHrs;
 end
 
-% Remove suffix
-if nargin==2
-    name = strrep(name,suffix,'');
-end
+% Get the extension
+[is,ie] = regexp(Img.fileName,'\.[0-9a-z]+$');
+extn = Img.fileName(is:ie);
     

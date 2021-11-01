@@ -29,23 +29,19 @@ SaveWave = Config.exportOpt.SaveWave;
 SaveFR = Config.exportOpt.SaveFR;
 SaveFA = Config.exportOpt.SaveFA;
 SaveFP = Config.exportOpt.SaveFP;
+ImageExtensionOut = Config.exportOpt.ImageExtensionOut;
 
-ImgZoom = img.zoom;
-ImgTime = img.time;
-ImgTimeHrs = img.timeHrs;
-ImgTimeDays = img.timeDays
-ImgPath = img.filePath;
-ImgFile = img.fileName;
+ImgZoom = Img.zoom;
+ImgTime = Img.time;
+ImgTimeHrs = Img.timeHrs;
+ImgTimeDays = Img.timeDays
+PathIn = Img.filePath;
+File = Img.fileName;
 
-% ImageExtensionIn = Controls.ImageExtensionIn;
-% ImageExtensionOut = Controls.ImageExtensionOut;
-% PathIn = Controls.PathIn;
-% ImageSeparator = Controls.ImageSeparator;
-% ImageSuffix = Controls.ImageSuffix;
-% DirectorySeparator = Controls.DirectorySeparator;
-% DirectorySuffix = Controls.DirectorySuffix;
-% ShowProgress = Controls.ShowProgress;
-% File = Controls.File;
+ImageSeparator = ' ';
+ImageSuffix = 'binary';
+DirectorySeparator = ' ';
+ShowProgress = 0;
 
 % Ensure path out is set
 % if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
@@ -56,7 +52,7 @@ ImgFile = img.fileName;
 
 % Ensure directory suffix is set
 % if ~isfield(Controls,'DirectorySuffix')
-    Controls.DirectorySuffix = 'Binary';
+    DirectorySuffix = 'Binary';
 % else
 %     DirectorySuffix = Controls.DirectorySuffix;
 % end
@@ -88,8 +84,9 @@ if ComputeImage
     for n=1:nFiles
         
         % Get metadata and create formatted filename
-        [sample,time,magnification] = colmeta(ImgFile,Img,ImgNo);
+        [sample,time,magnification,extn] = colmeta(ImgFile,Img,ImgNo);
         name = Config.general.SetName;
+        ImageExtensionIn = extn;
         names{n} = name;
         filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
         DirectoryOut = ['Sample'];
