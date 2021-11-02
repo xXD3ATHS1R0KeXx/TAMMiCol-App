@@ -147,7 +147,7 @@ end
 
 function changeFile(app,imgIndex,FileEditField)
     % Load the file picker, save the output values
-    [newFile, newPath] = uigetfile('.tif');
+    [newFile, newPath] = uigetfile({'*.tif;*.bmp;*.jpg;*.png;','Images'});
 
     % If they gave a new file, the values should be returned
     if (newPath ~= 0)

@@ -1,4 +1,4 @@
-function [output] = coldrive(Config,Img,ImgNo)
+function coldrive(Config,Img,ImgNo)
 
 %COLDRIVE Driver script for image processing and statistics
 %
@@ -38,21 +38,21 @@ ImgTimeDays = Img.timeDays
 PathIn = Img.filePath;
 File = Img.fileName;
 
-ImageSeparator = '-';
+ImageSeparator = ' ';
 ImageSuffix = 'binary';
-%DirectorySeparator = '';
+DirectorySeparator = '';
 ShowProgress = 0;
 
 % Ensure path out is set
 % if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
-    %PathOut = PathIn;
+    PathOut = PathIn;
 % else
 %     PathOut = Controls.PathOut;
 % end
 
 % Ensure directory suffix is set
 % if ~isfield(Controls,'DirectorySuffix')
-    %DirectorySuffix = 'Binary';
+    DirectorySuffix = 'Binary';
 % else
 %     DirectorySuffix = Controls.DirectorySuffix;
 % end
@@ -87,28 +87,29 @@ if ComputeImage
         [sample,time,magnification,extn] = colmeta(Img,ImgNo);
         name = Config.general.SetName;
         ImageExtensionIn = extn;
-        names{1} = name;
-        filename = strcat(name, '-s', num2str(sample), '-', num2str(time), 'h-', num2str(magnification), 'X');
-        DirectoryOut = 'Output';
-        %HolderOut = [name DirectorySeparator DirectorySuffix];
-        %Holders{n} = HolderOut;
-
+        names{n} = name;
+        filename = [name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
+        DirectoryOut = ['Out'];
+        HolderOut = [name DirectorySeparator DirectorySuffix];
+        Holders{n} = HolderOut;
+        
         % Create output folders
         if any([SaveBinary,SaveIntensity,SaveComparison,SaveError])
             
             warning('off','MATLAB:MKDIR:DirectoryExists')
             
-            % Output folder
-            mkdir(PathIn,DirectoryOut);
+            % Dataset folder
+            mkdir(PathOut,HolderOut);
+            
+            % Sample folder
+            mkdir(fullfile(PathOut,HolderOut),DirectoryOut);
             
             warning('on','MATLAB:MKDIR:DirectoryExists')
             
         end
         
         % Set output location
-        LocationOut = fullfile(PathIn,DirectoryOut);
-        % Return the output path, so that we can keep track of it
-        output = LocationOut;
+        LocationOut = fullfile(PathOut,HolderOut,DirectoryOut);
         
         % Load image
         % C = flip(imread(fullfile(PathIn)));%fullfile(files(n).folder,files(n).name)));
@@ -147,8 +148,7 @@ if ComputeImage
             set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
             set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
             set(findall(hf,'Type','line'),'Linewidth',1.5)
-            OutName = strcat(filename, ImageSeparator, 'error');
-            saveplot(fullfile(LocationOut,OutName),[],'Simple');
+            saveplot(fullfile(LocationOut,[filename ImageSeparator 'error']),[],'Simple')
             close gcf
             
         end
@@ -157,8 +157,7 @@ if ComputeImage
         if SaveBinary
 
             FileOut = flip(1-CF);
-            OutName = strcat(filename, '-', ImageSuffix, '.', ImageExtensionOut);
-            imwrite(FileOut, fullfile(LocationOut,OutName));
+            imwrite(FileOut, fullfile(LocationOut,[filename '-' ImageSuffix '.' ImageExtensionOut]));
             %Controls.file = imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
             
         end
@@ -173,8 +172,7 @@ if ComputeImage
             h = imshow(green);
             set(h,'AlphaData',CF*0.3)
             set(gca,'YDir','Normal')
-            OutName = strcat(filename, ImageSeparator, 'compare');
-            saveplot(fullfile(LocationOut,OutName),[],'SimpleOGL',1)
+            saveplot(fullfile(LocationOut,[filename ImageSeparator 'compare']),[],'SimpleOGL',1)
             close gcf
 
         end
@@ -195,22 +193,19 @@ if ComputeImage
             set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
             set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
             set(findall(hf,'Type','line'),'Linewidth',1.5)
-            OutName = strcat(filename, ImageSeparator, 'intensity');
-            saveplot(fullfile(LocationOut,OutName),[],'Simple')
+            saveplot(fullfile(LocationOut,[filename ImageSeparator 'intensity']),[],'Simple')
             close gcf
             
         end
         
         % Save data as MAT file
         if SaveBinaryMAT
-            OutName = strcat(filename, ImageSeparator, 'binary');
-            save(fullfile(LocationOut,OutName),'CF');
+            save(fullfile(LocationOut,[filename ImageSeparator 'binary']),'CF');
         end
         
         % Save data as CSV
         if SaveBinaryCSV
-            OutName = strcat(filename, ImageSeparator, 'binary.csv');
-            csvwrite(fullfile(LocationOut,OutName),CF);
+            csvwrite(fullfile(LocationOut,[filename ImageSeparator 'binary.csv']),CF);
         end
         
         % Progress
@@ -231,14 +226,20 @@ if ComputeImage
     if ShowProgress
         close(hw)
     end
+    
+    % Set save name
+    if numel(unique(names))~=1
+        saveName = ['Multiple Datasets ' datestr(now,'YYYYMMDDhhmm')];
+    else
+        saveName = name;
+    end
 
     % Save warnings
     if ~isempty(warnings)
 
         warningsTable = cell2table(warnings);
         warningsTable.Properties.VariableNames = {'Dataset','Sample','Time','Warning'};
-        OutName = strcat(filename, ImageSeparator, 'Warnings');
-        writetable(warningsTable,fullfile(LocationOut,OutName))
+        writetable(warningsTable,fullfile(PathOut,[saveName ImageSeparator 'Warnings']))
         
 
     end
@@ -380,43 +381,43 @@ if ComputeStatistics
     
     % Save CSV
     if SaveStatsCSV
-        OutName = strcat(saveName, ImageSeparator, 'Statistics');
-        writetable(dataTable,fullfile(LocationOut,OutName))
+        
+        writetable(dataTable,fullfile(PathOut,[saveName ImageSeparator 'Statistics']))
         
     end
     
     % Save Fourier Coefficients
     if SaveFourier
-        OutName = strcat(saveName, ImageSeparator, 'Fourier Coefficients');
-        writetable(fourierTable,fullfile(LocationOut,OutName))
+        
+        writetable(fourierTable,fullfile(PathOut,[saveName ImageSeparator 'Fourier Coefficients']))
 
     end
     
     % Save wave numbers
     if SaveWave
-        OutName = strcat(saveName, ImageSeparator, 'Wavenumbers');
-        writetable(waveTable,fullfile(LocationOut,OutName))
+        
+        writetable(waveTable,fullfile(PathOut,[saveName ImageSeparator 'Wavenumbers']))
 
     end
     
     % Save radial metric
     if SaveFR
-        OutName = strcat(saveName, ImageSeparator, 'Radial Metric');
-        writetable(frTable,fullfile(LocationOut,OutName))
+        
+        writetable(frTable,fullfile(PathOut,[saveName ImageSeparator 'Radial Metric']))
 
     end
     
     % Save angular metric
     if SaveFA
-        OutName = strcat(saveName, ImageSeparator, 'Angular Metric');
-        writetable(fthetaTable,fullfile(LocationOut,OutName))
+        
+        writetable(fthetaTable,fullfile(PathOut,[saveName ImageSeparator 'Angular Metric']))
 
     end
     
     % Save pair metric
     if SaveFP
-        OutName = strcat(saveName, ImageSeparator, 'Pair Metric');
-        writetable(fThetaTable,fullfile(LocationOut,OutName))
+        
+        writetable(fThetaTable,fullfile(PathOut,[saveName ImageSeparator 'Pair Metric']))
 
     end
     
@@ -486,8 +487,8 @@ if ComputeStatistics
     
     % Save data as MAT file
     if SaveStatsMAT
-        OutName = strcat(saveName, ImageSeparator, 'Statistics');
-        save(fullfile(LocationOut,OutName),'Ir','Itheta','ITheta','Icsr','Area','Rmin','Rmax','ffTheta','k','fr','ftheta','fTheta')
+        
+        save(fullfile(PathOut,[saveName ImageSeparator 'Statistics']),'Ir','Itheta','ITheta','Icsr','Area','Rmin','Rmax','ffTheta','k','fr','ftheta','fTheta')
         
     end
     

@@ -1,4 +1,4 @@
-function [CF,warnings,tolerances,proportions,error,selectedTolerance,criticalLevel,criticalIndex] = colimg(C,Settings)
+function [CF,warnings,tolerances,proportions,error,selectedTolerance,criticalLevel,criticalIndex] = colimg(C,Config)
 
 %COLget_fu Process and analyse colony images
 %
@@ -16,13 +16,14 @@ function [CF,warnings,tolerances,proportions,error,selectedTolerance,criticalLev
 %%%%%%%%%%%%%%
 
 % Settings
-Method = Settings.Method;
-RemoveBorders =Settings.RemoveBorders;
-LevelMethod = Settings.LevelMethod;
-ManualCheck = Settings.ManualCheck;
-BorderMethod = Settings.BorderMethod;
-InvertColour = Settings.InvertColour;
-ChiMax = Settings.ChiMax;
+Method = Config.imgProcessing.Method;
+BorderMethod = Config.imgProcessing.BorderMethod;
+InvertColour = Config.imgProcessing.InvertColour;
+
+RemoveBorders = 'None';
+LevelMethod = 3;
+ManualCheck = 0;
+ChiMax = 1;
 
 %%%%%%%%%%%%%%%%%%%%%
 %%% Process image %%%
@@ -330,7 +331,7 @@ end
 CF = imfilt(CT,selectedTolerance);
 
 % Remove border pixels
-if BorderMethod
+if (BorderMethod ~= "")
     
     % Check for border pixels
     borderFlag = any([CF(1,:) CF(end,:) CF(:,1).' CF(:,end).']);
