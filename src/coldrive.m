@@ -34,7 +34,7 @@ ImageExtensionOut = char(Config.exportOpt.ImageExtensionOut);
 ImgZoom = Img.zoom;
 ImgTime = Img.time;
 ImgTimeHrs = Img.timeHrs;
-ImgTimeDays = Img.timeDays
+ImgTimeDays = Img.timeDays;
 PathIn = Img.filePath;
 File = Img.fileName;
 

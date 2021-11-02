@@ -10,7 +10,7 @@ function saveplot(fname,hf,method,nofig)
 %   Date created: 04/09/2014
 
 % Make sure name is char
-fname = char(fname);
+fna
 
 % Check for name
 if nargin<1

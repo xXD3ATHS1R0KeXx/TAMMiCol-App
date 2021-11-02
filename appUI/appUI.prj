@@ -21,9 +21,15 @@
       <file>${PROJECT_ROOT}\appUI.mlapp</file>
     </fileset.web.main>
     <fileset.resources>
+      <file>${PROJECT_ROOT}\appUI.mlapp</file>
       <file>${PROJECT_ROOT}\default.xml</file>
       <file>${PROJECT_ROOT}\imgSettings.m</file>
       <file>${PROJECT_ROOT}\projSettings.m</file>
+      <file>C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\src\coldrive.m</file>
+      <file>C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\src\colimg.m</file>
+      <file>C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\src\colmeta.m</file>
+      <file>C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\src\saveplot.m</file>
+      <file>C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\src\statcalc.m</file>
     </fileset.resources>
     <fileset.depfun />
     <fileset.package />
