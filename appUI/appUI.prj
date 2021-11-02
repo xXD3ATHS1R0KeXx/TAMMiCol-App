@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.webdeploy" plugin-version="1.0">
-  <configuration file="C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\appUI.prj" location="C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI" name="appUI" preferred-package-location="C:\ProgramData\MathWorks\webapps\R2021b\apps" target="target.webdeploy" target-name="Web App Compiler">
+  <configuration file="C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\appUI\appUI.prj" location="C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\appUI" name="appUI" preferred-package-location="C:\ProgramData\MathWorks\webapps\R2021b\apps" target="target.webdeploy" target-name="Web App Compiler">
     <param.appname>appUI</param.appname>
     <param.intermediate>${PROJECT_ROOT}\appUI</param.intermediate>
     <param.files.only>${PROJECT_ROOT}\appUI</param.files.only>
@@ -28,7 +28,7 @@
     <fileset.depfun />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\appUI" name="appUI.ctf" optional="false">C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\MATLAB\appUI\appUI\appUI.ctf</file>
+      <file location="${PROJECT_ROOT}\appUI" name="appUI.ctf" optional="false">C:\Users\Sam\OneDrive - Flinders\2021\Sem 2\COMP3782 IT Project\Github\appUI\appUI\appUI.ctf</file>
     </build-deliverables>
     <workflow />
     <matlab>

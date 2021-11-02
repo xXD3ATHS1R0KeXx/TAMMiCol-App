@@ -331,7 +331,7 @@ end
 CF = imfilt(CT,selectedTolerance);
 
 % Remove border pixels
-if BorderMethod
+if (BorderMethod ~= "")
     
     % Check for border pixels
     borderFlag = any([CF(1,:) CF(end,:) CF(:,1).' CF(:,end).']);

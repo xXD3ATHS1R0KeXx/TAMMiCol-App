@@ -1,4 +1,4 @@
-function coldrive(Config)
+function coldrive(Config,Img,ImgNo)
 
 %COLDRIVE Driver script for image processing and statistics
 %
@@ -15,48 +15,47 @@ function coldrive(Config)
 ComputeImage = 1;
 ComputeStatistics = 0;
 
-SaveBinary = Controls.SaveBinary;
-SaveBinaryCSV = Controls.SaveBinaryCSV;
-SaveBinaryMAT = Controls.SaveBinaryMAT;
-SaveComparison = Controls.SaveComparison;
-SaveStatsCSV = Controls.SaveStatsCSV;
-SaveStatsMAT = Controls.SaveStatsMAT;
+SaveBinary = Config.exportFiles.SaveBinary;
+SaveBinaryCSV = Config.exportFiles.SaveBinaryCSV;
+SaveBinaryMAT = Config.exportFiles.SaveBinaryMAT;
+SaveComparison = Config.exportFiles.SaveComparison;
+SaveStatsCSV = Config.exportFiles.SaveStatsCSV;
+SaveStatsMAT = Config.exportFiles.SaveStatsMAT;
 
-SaveFourier = Controls.SaveFourier;
-SaveWave = Controls.SaveWave;
-SaveFR = Controls.SaveFR;
-SaveFA = Controls.SaveFA;
-SaveFP = Controls.SaveFP;
+SaveIntensity = Config.exportOpt.SaveIntensity;
+SaveError = Config.exportOpt.SaveError;
+SaveFourier = Config.exportOpt.SaveFourier;
+SaveWave = Config.exportOpt.SaveWave;
+SaveFR = Config.exportOpt.SaveFR;
+SaveFA = Config.exportOpt.SaveFA;
+SaveFP = Config.exportOpt.SaveFP;
+ImageExtensionOut = char(Config.exportOpt.ImageExtensionOut);
 
+ImgZoom = Img.zoom;
+ImgTime = Img.time;
+ImgTimeHrs = Img.timeHrs;
+ImgTimeDays = Img.timeDays
+PathIn = Img.filePath;
+File = Img.fileName;
 
-
-
-SaveIntensity = Controls.SaveIntensity;
-SaveError = Controls.SaveError;
-
-ImageExtensionIn = Controls.ImageExtensionIn;
-ImageExtensionOut = Controls.ImageExtensionOut;
-PathIn = Controls.PathIn;
-ImageSeparator = Controls.ImageSeparator;
-ImageSuffix = Controls.ImageSuffix;
-DirectorySeparator = Controls.DirectorySeparator;
-DirectorySuffix = Controls.DirectorySuffix;
-ShowProgress = Controls.ShowProgress;
-File = Controls.File;
+ImageSeparator = ' ';
+ImageSuffix = 'binary';
+DirectorySeparator = '';
+ShowProgress = 0;
 
 % Ensure path out is set
-if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
+% if ~isfield(Controls,'PathOut')||isempty(Controls.PathOut)
     PathOut = PathIn;
-else
-    PathOut = Controls.PathOut;
-end
+% else
+%     PathOut = Controls.PathOut;
+% end
 
 % Ensure directory suffix is set
-if ~isfield(Controls,'DirectorySuffix')
-    Controls.DirectorySuffix = 'Binary';
-else
-    DirectorySuffix = Controls.DirectorySuffix;
-end
+% if ~isfield(Controls,'DirectorySuffix')
+    DirectorySuffix = 'Binary';
+% else
+%     DirectorySuffix = Controls.DirectorySuffix;
+% end
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%% Image processing %%%
@@ -68,8 +67,8 @@ if ComputeImage
     warnings = {};
     
     % Find all files in subdirectories
-    files = dir(fullfile(PathIn,'**',['*.' ImageExtensionIn]));
-    nFiles = numel(files);
+    files = dir(fullfile(PathIn,File));
+    nFiles = 1;
     
     % Stop if no files found
     if nFiles==0
@@ -85,16 +84,13 @@ if ComputeImage
     for n=1:nFiles
         
         % Get metadata and create formatted filename
-        [~,filename,~] = fileparts(files(n).name);
-        [name,sample,time,magnification] = colmeta(filename);
+        [sample,time,magnification,extn] = colmeta(Img,ImgNo);
+        name = Config.general.SetName;
+        ImageExtensionIn = extn;
         names{n} = name;
-        if isnan(magnification)
-            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h'];
-        else
-            filename = 'temp'%[name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
-        end
-        DirectoryOut = ['Sample'];
-        HolderOut = ['temp' DirectorySeparator DirectorySuffix];
+        filename = [name ' s' num2str(sample) ' ' num2str(time) 'h ' num2str(magnification) 'X'];
+        DirectoryOut = ['Out'];
+        HolderOut = [name DirectorySeparator DirectorySuffix];
         Holders{n} = HolderOut;
         
         % Create output folders
@@ -128,7 +124,7 @@ if ComputeImage
         end
         
         % Process
-        [CF,warningsTemp,tolerances,proportions,error,selectedTolerance,criticalLevel,criticalIndex] = colimg(C,Settings);
+        [CF,warningsTemp,tolerances,proportions,error,selectedTolerance,criticalLevel,criticalIndex] = colimg(C,Config);
         
         for j=1:length(warningsTemp)
             
@@ -160,8 +156,8 @@ if ComputeImage
         % Save binary image
         if SaveBinary
 
-            Controls.file = flip(1-CF);
-            imwrite(Controls.file, fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
+            FileOut = flip(1-CF);
+            imwrite(FileOut, fullfile(LocationOut,[filename '-' ImageSuffix '.' ImageExtensionOut]));
             %Controls.file = imwrite(flip(1-CF),fullfile(LocationOut,[filename ImageSeparator ImageSuffix '.' ImageExtensionOut]));
             
         end
@@ -265,11 +261,11 @@ if ComputeStatistics
         % Loop over all holders
         files = [];
         for j=1:numel(Holders)
-            files = [files,dir(fullfile(PathOut,Holders{j},'**',['*.' ImageExtensionOut]))];
+            files = [files,dir(fullfile(PathIn,File))];
         end
         
     else
-        files = dir(fullfile(PathIn,'**',['*.' ImageExtensionOut]));
+        files = dir(fullfile(PathIn,File));
     end
     
     nFiles = numel(files);
@@ -499,9 +495,9 @@ if ComputeStatistics
 end
 
 % Save settings
-S = [fieldnames(Settings) struct2cell(Settings)];
-O = [fieldnames(Options) struct2cell(Options)];
-C = [fieldnames(Controls) struct2cell(Controls)];
-settingsTable = cell2table([S;O;C]);
-settingsTable.Properties.VariableNames = {'Option','Value'};
-writetable(settingsTable,fullfile(PathOut,[saveName ImageSeparator 'Settings']));
+% S = [fieldnames(Settings) struct2cell(Settings)];
+% O = [fieldnames(Options) struct2cell(Options)];
+% C = [fieldnames(Controls) struct2cell(Controls)];
+% settingsTable = cell2table([S;O;C]);
+% settingsTable.Properties.VariableNames = {'Option','Value'};
+% writetable(settingsTable,fullfile(PathOut,[saveName ImageSeparator 'Settings']));

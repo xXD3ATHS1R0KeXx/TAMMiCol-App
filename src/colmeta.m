@@ -21,5 +21,5 @@ end
 
 % Get the extension
 [is,ie] = regexp(Img.fileName,'\.[0-9a-z]+$');
-extn = Img.fileName(is:ie);
+extn = extractBetween(Img.fileName,is,ie);
     
