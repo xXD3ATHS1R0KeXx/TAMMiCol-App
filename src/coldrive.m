@@ -132,26 +132,27 @@ if ComputeImage
         end
                         
         % Plot intensity with error
-        if SaveError
-            
-            mx = 1.1;
-            figure('Visible','Off')
-            plot(tolerances,proportions,selectedTolerance*ones(1,100),linspace(0,mx),'k--',criticalLevel*ones(1,100),linspace(0,mx),'k--',tolerances(2:criticalIndex-1),error(2:criticalIndex-1))
-            axis tight
-            ylim([0 mx])
-            xlabel('$\tau$')
-            ylabel('$\chi, \delta$')
-            hf = gcf;
-            hh = get(hf,'Children');
-            set(gca,'FontSize',12)
-            set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
-            set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
-            set(findall(hf,'Type','line'),'Linewidth',1.5)
-            OutName = strcat(filename, ImageSeparator, 'error');
-            saveplot(fullfile(LocationOut,OutName),[],'Simple');
-            close gcf
-            
-        end
+        % Plot NOT SUPPORTED by Web App
+%         if SaveError
+%             
+%             mx = 1.1;
+%             figure('Visible','Off')
+%      % **   plot(tolerances,proportions,selectedTolerance*ones(1,100),linspace(0,mx),'k--',criticalLevel*ones(1,100),linspace(0,mx),'k--',tolerances(2:criticalIndex-1),error(2:criticalIndex-1))
+%             axis tight
+%             ylim([0 mx])
+%             xlabel('$\tau$')
+%             ylabel('$\chi, \delta$')
+%             hf = gcf;
+%             hh = get(hf,'Children');
+%             set(gca,'FontSize',12)
+%             set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
+%             set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
+%             set(findall(hf,'Type','line'),'Linewidth',1.5)
+%             OutName = strcat(filename, ImageSeparator, 'error');
+%             saveplot(fullfile(LocationOut,OutName),[],'Simple');
+%             close gcf
+%             
+%         end
         
         % Save binary image
         if SaveBinary
@@ -164,42 +165,44 @@ if ComputeImage
         end
         
         % Save comparisons
-        if SaveComparison
-            
-            figure('Visible','Off');
-            imshow(C)
-            hold on
-            green = cat(3,zeros(size(CF)),ones(size(CF)),zeros(size(CF)));
-            h = imshow(green);
-            set(h,'AlphaData',CF*0.3)
-            set(gca,'YDir','Normal')
-            OutName = strcat(filename, ImageSeparator, 'compare');
-            saveplot(fullfile(LocationOut,OutName),[],'SimpleOGL',1)
-            close gcf
-
-        end
+        % Figure NOT SUPPORTED by Web App
+%         if SaveComparison
+%             
+%         %    figure('Visible','Off');
+%             imshow(C)
+%             hold on
+%             green = cat(3,zeros(size(CF)),ones(size(CF)),zeros(size(CF)));
+%             h = imshow(green);
+%             set(h,'AlphaData',CF*0.3)
+%             set(gca,'YDir','Normal')
+%             OutName = strcat(filename, ImageSeparator, 'compare');
+%             saveplot(fullfile(LocationOut,OutName),[],'SimpleOGL',1)
+%             close gcf
+% 
+%         end
         
         % Save intensity
-        if SaveIntensity
-            
-            mx = 1.1;
-            figure('Visible','Off');
-            plot(tolerances,proportions,selectedTolerance*ones(1,100),linspace(0,mx),'k--',criticalLevel*ones(1,100),linspace(0,mx),'k--')
-            xlabel('$\tau$')
-            ylabel('$\chi$')
-            axis tight
-            ylim([0 mx])
-            hf = gcf;
-            hh = get(hf,'Children');
-            set(gca,'FontSize',12)
-            set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
-            set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
-            set(findall(hf,'Type','line'),'Linewidth',1.5)
-            OutName = strcat(filename, ImageSeparator, 'intensity');
-            saveplot(fullfile(LocationOut,OutName),[],'Simple')
-            close gcf
-            
-        end
+         % Plot NOT SUPPORTED by Web App
+%         if SaveIntensity
+%             
+%             mx = 1.1;
+%        %**  figure('Visible','Off');
+%             plot(tolerances,proportions,selectedTolerance*ones(1,100),linspace(0,mx),'k--',criticalLevel*ones(1,100),linspace(0,mx),'k--')
+%             xlabel('$\tau$')
+%             ylabel('$\chi$')
+%             axis tight
+%             ylim([0 mx])
+%             hf = gcf;
+%             hh = get(hf,'Children');
+%             set(gca,'FontSize',12)
+%             set(findall(hf,'Type','Text'),'FontSize',12,'FontWeight','Normal','Interpreter','LaTeX')
+%             set(findall(hh,'Type','Axes'),'FontSize',12,'FontWeight','Normal','TickLabelInterpreter','LaTeX')
+%             set(findall(hf,'Type','line'),'Linewidth',1.5)
+%             OutName = strcat(filename, ImageSeparator, 'intensity');
+%             saveplot(fullfile(LocationOut,OutName),[],'Simple')
+%             close gcf
+%             
+%         end
         
         % Save data as MAT file
         if SaveBinaryMAT
@@ -214,16 +217,17 @@ if ComputeImage
         end
         
         % Progress
-        if ShowProgress
-            
-            % Check to update or replace waitbar
-            if exist('hw','Var')&&ishandle(hw)
-                waitbar(n/nFiles,hw,sprintf('Image analysis: %.2f %%',100*n/nFiles));
-            else
-                hw = waitbar(n/nFiles,sprintf('Image analysis: %.2f %%',100*n/nFiles));
-            end
-            
-        end
+        % Not yet implemented
+%         if ShowProgress
+%             
+%             % Check to update or replace waitbar
+%             if exist('hw','Var')&&ishandle(hw)
+%                 waitbar(n/nFiles,hw,sprintf('Image analysis: %.2f %%',100*n/nFiles));
+%             else
+%                 hw = waitbar(n/nFiles,sprintf('Image analysis: %.2f %%',100*n/nFiles));
+%             end
+%             
+%         end
         
     end
     

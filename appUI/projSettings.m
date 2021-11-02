@@ -289,6 +289,8 @@ ComparisonImagesButton.FontSize = 18;
 ComparisonImagesButton.Position = [11 174 187 29];
 ComparisonImagesButton.ValueChangedFcn = @(src,event)changeSetting(app,'exportFiles','SaveComparison',logical(event.Value));
 ComparisonImagesButton.Value = logical(getSetting(app,'exportFiles','SaveComparison'));
+%%% Button Disabled - feature not currently supported
+ComparisonImagesButton.Enable = 'off';
 
 % Create StatisticsCSVButton
 StatisticsCSVButton = uibutton(ExportFilesPanel, 'state');
@@ -320,6 +322,8 @@ IntensityPlotsButton.FontSize = 18;
 IntensityPlotsButton.Position = [13 352 187 29];
 IntensityPlotsButton.ValueChangedFcn = @(src,event)changeSetting(app,'exportOpt','SaveIntensity',logical(event.Value));
 IntensityPlotsButton.Value = logical(getSetting(app,'exportOpt','SaveIntensity'));
+%%% Button Disabled - feature not currently supported
+IntensityPlotsButton.Enable = 'off';
 
 % Create IntensitywithErrorButton
 IntensitywithErrorButton = uibutton(ExportOptionsPanel, 'state');
@@ -328,6 +332,9 @@ IntensitywithErrorButton.FontSize = 18;
 IntensitywithErrorButton.Position = [13 316 187 29];
 IntensitywithErrorButton.ValueChangedFcn = @(src,event)changeSetting(app,'exportOpt','SaveError',logical(event.Value));
 IntensitywithErrorButton.Value = logical(getSetting(app,'exportOpt','SaveError'));
+%%% Button Disabled - feature not currently supported
+IntensitywithErrorButton.Enable = 'off';
+
 
 % Create FourierCoefficientsButton
 FourierCoefficientsButton = uibutton(ExportOptionsPanel, 'state');
