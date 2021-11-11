@@ -6,4 +6,8 @@ The technologies used are listed and linked below
   * [MATLAB](https://au.mathworks.com/products/matlab.html)
 
 # Contributors
-![GitHub Contributors Image](https://contrib.rocks/image?repo=Your_GitHub_Username/Your_GitHub_Repository_Name)
+All the contributors to the project can be seen below as well as a link to their GitHub page as well:
+* [Cooper Tuapawa](https://github.com/xXD3ATHS1R0KeXx) - xXD3ATHS1R0KeXx, J0K3R
+* [Jacob Ling](https://github.com/chillehh) - chillehh
+* [Samuel Smith](https://github.com/yoyosamo) - yoyosamo
+* Chiemelie Obi-Okonkwo
